@@ -2,9 +2,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="gdg.mesce.sabeersulaiman.remindme.RemaindersActivity">
-    <item
-        android:id="@+id/action_settings"
+    <item android:id="@+id/action_new"
+        android:title="@string/new_remainder"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        app:showAsAction="never" />
+    <item android:id="@+id/action_exit"
+        android:title="@string/exit"
+        android:orderInCategory="200"
         app:showAsAction="never" />
 </menu>

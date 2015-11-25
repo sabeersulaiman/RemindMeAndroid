@@ -2,4 +2,6 @@
     <string name="app_name">Remind Me</string>
     <string name="action_settings">Settings</string>
     <string name="reminderText">Remainder Text</string>
+    <string name="new_remainder">New Reminder</string>
+    <string name="exit">Exit</string>
 </resources>
