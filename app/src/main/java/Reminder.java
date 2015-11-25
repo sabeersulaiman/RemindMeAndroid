@@ -1,5 +1,3 @@
-package gdg.mesce.sabeersulaiman.remindme;
-
 /**
  * Created by Sabeer Sulaiman on 11/25/2015.
  */
