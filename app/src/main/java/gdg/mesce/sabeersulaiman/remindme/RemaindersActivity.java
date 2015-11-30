@@ -1,5 +1,6 @@
 package gdg.mesce.sabeersulaiman.remindme;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +16,8 @@ import android.widget.ListView;
 public class RemaindersActivity extends AppCompatActivity {
 
     private ListView mListView;
+    private RemindersDBAdaptor mDbAdapter;
+    private RemindersCursorAdaptor mCursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,14 +25,29 @@ public class RemaindersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_remainders);
         mListView = (ListView) findViewById(R.id.RemainderListView);
 
-        ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<String>(
-                this,
+        mDbAdapter = new RemindersDBAdaptor(this);
+        mDbAdapter.open();
+
+        Cursor cursor = mDbAdapter.fetchAllReminders();
+
+        String[] from = new String[]{
+                RemindersDBAdaptor.COL_CONTENT
+        };
+
+        int[] to = new int[]{
+                R.id.rowText
+        };
+
+        mCursor = new RemindersCursorAdaptor(
+                RemaindersActivity.this,
                 R.layout.remainder_list_item,
-                R.id.rowText,
-                new String[] {"First Record", "Second Record", "Third Record", "Final Record"}
+                cursor,
+                from,
+                to,
+                0
         );
 
-        mListView.setAdapter(stringArrayAdapter);
+        mListView.setAdapter(mCursor);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
